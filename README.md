@@ -348,4 +348,107 @@ It sits between:
 - Without the kernel, the operating system cannot function.
 - It is software basically
 
+## Bootloader
+
+A **bootloader** is a small program that runs **immediately after a computer is powered on**. Its job is to **load the operating system kernel into memory and start it**.
+
+Without a bootloader, the system cannot start an operating system.
+
+---
+
+## Boot Process (Simplified)
+
+1. **Power On**
+2. **BIOS or UEFI firmware** checks hardware.
+3. **Bootloader is executed from the boot device** (SSD/HDD/USB).
+4. Bootloader **loads the operating system kernel**.
+5. Kernel starts the operating system.
+
+---
+
+## Example in Linux
+
+A common Linux bootloader is **GRUB (Grand Unified Bootloader)**.
+
+GRUB can:
+
+* Choose between multiple operating systems
+* Pass parameters to the kernel
+* Start Linux
+
+Example menu:
+
+```
+Ubuntu
+Advanced options for Ubuntu
+Windows Boot Manager
+```
+
+This is why dual-boot systems can select between **Linux and Windows**.
+
+---
+
+## Example in Windows
+
+Windows uses **Windows Boot Manager**, which loads the Windows kernel during startup.
+
+---
+
+
+
+
+## Windows vs Linux
+
+| Feature                   | Windows                                               | Linux                                                               |
+| ------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------- |
+| **Developer**             | Developed by Microsoft                                | Developed by Linus Torvalds and the open-source community           |
+| **Source Code**           | Closed source (proprietary)                           | Open source - General Public license                                                        |
+| **Cost**                  | Requires a paid license (usually preinstalled on PCs) | Mostly free                                                         |
+| **User Interface**        | Strong GUI focus; very beginner friendly              | GUI available, but strong command-line usage                        |
+| **Customization**         | Limited customization                                 | Highly customizable                                                 |
+| **Security**              | More targeted by malware and viruses                  | Generally more secure due to permission model                       |
+| **Performance**           | Heavier; consumes more system resources               | Lightweight; runs well on older hardware                            |
+| **Software Installation** | Install using `.exe` or `.msi` files                  | Usually installed through package managers (`apt`, `yum`, `pacman`) |
+| **File System**           | NTFS, FAT32                                           | ext4, Btrfs, XFS                                                    |
+| **Use Cases**             | Gaming, office work, general consumer use             | Servers, development, cybersecurity, cloud systems                  |
+
+---
+
+## Practical Example
+
+**Installing software**
+
+**Windows**
+
+```
+Download Chrome.exe → Double click → Install
+```
+
+**Linux (Ubuntu)**
+
+```
+sudo apt install chromium-browser
+```
+
+Linux emphasizes **terminal-based package management**, while Windows relies mostly on **graphical installers**.
+
+---
+
+## Where Each Is Commonly Used
+
+**Windows**
+
+* Personal computers
+* Gaming
+* Office environments
+
+**Linux**
+
+* Servers and cloud infrastructure
+* Programming and development
+* Cybersecurity and DevOps
+
+Large platforms like Google, Amazon, and Meta Platforms heavily rely on Linux servers.
+
+---
 
