@@ -452,3 +452,160 @@ Large platforms like Google, Amazon, and Meta Platforms heavily rely on Linux se
 
 ---
 
+# Linux File System
+
+The **Linux file system** is the hierarchical structure used by Linux to **organize, store, and manage files and directories** on a storage device. Instead of multiple drive letters (like `C:` or `D:` in Windows), Linux organizes everything under a **single root directory `/`**.
+
+All files, devices, programs, and directories exist within this unified directory tree.
+
+---
+
+## Key Characteristics
+
+1. **Hierarchical structure**
+   Files are arranged in a tree-like structure starting from the root `/`.
+
+2. **Everything is treated as a file**
+   Hardware devices, processes, and system information are accessed as files.
+
+3. **Case sensitive**
+   `file.txt` and `File.txt` are different.
+
+4. **Permission-based security**
+   Each file has permissions for **owner, group, and others**.
+
+---
+
+## Basic Structure
+
+![Image](https://www.devopsschool.com/blog/linux-tutorials-linux-file-systems/)
+
+## Important Linux Directories
+
+### `/` (Root Directory)
+
+* The **top-level directory** of the Linux filesystem.
+* All other directories originate from here.
+
+### `/home`
+
+* Contains **personal directories for users**.
+
+Example:
+
+```
+/home/harsh
+/home/user1
+```
+
+---
+
+### `/bin`
+
+* Contains **essential command binaries** used by all users.
+
+Examples:
+
+```
+ls
+cp
+mv
+cat
+```
+
+---
+
+### `/etc`
+
+* Stores **system configuration files**.
+
+Examples:
+
+```
+/etc/passwd
+/etc/hosts
+```
+
+---
+
+### `/usr`
+
+* Contains **user programs and applications** installed on the system.
+
+Examples:
+
+```
+/usr/bin
+/usr/lib
+```
+
+---
+
+### `/var`
+
+* Stores **variable data** such as logs and caches.
+
+Examples:
+
+```
+/var/log
+/var/tmp
+```
+
+---
+
+### `/tmp`
+
+* Temporary files created by applications.
+* Usually cleared when the system restarts.
+
+---
+
+### `/dev`
+
+* Contains **device files** representing hardware.
+
+Examples:
+
+```
+/dev/sda
+/dev/usb
+```
+
+---
+
+### `/boot`
+
+* Contains **bootloader files and kernel required to start Linux**.
+
+---
+
+## Example Path
+
+```
+/home/harsh/projects/app.js
+```
+
+Meaning:
+
+* `/` → root
+* `home` → users directory
+* `harsh` → user folder
+* `projects` → project directory
+* `app.js` → file
+
+---
+
+## Summary
+
+The Linux file system:
+
+* Uses a **single root directory `/`**
+* Organizes files in a **tree hierarchy**
+* Treats **everything as a file**
+* Uses **permissions for security**
+* Contains standard directories defined by the **Filesystem Hierarchy Standard (FHS)**.
+
+---
+
+
