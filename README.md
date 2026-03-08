@@ -608,4 +608,568 @@ The Linux file system:
 
 ---
 
+# Linux Commands
+
+## 1. `ls`
+
+**Definition:**
+Lists files and directories inside the current directory.
+
+**Syntax**
+
+```bash
+ls
+```
+
+**Example**
+
+```bash
+ls
+```
+
+**Output Example**
+
+```
+file1.txt  notes.txt  folder1
+```
+
+**Useful Variants**
+
+* `ls -a` → shows hidden files
+* `ls -lh` → shows size in human-readable format
+
+---
+
+# 2. `cd`
+
+**Definition:**
+Changes the current directory.
+
+**Syntax**
+
+```bash
+cd directory_name
+```
+
+**Examples**
+
+```bash
+cd Documents
+```
+
+Move to parent directory:
+
+```bash
+cd ..
+```
+
+Move to home directory:
+
+```bash
+cd ~
+```
+
+---
+
+# 3. `mkdir`
+
+**Definition:**
+Creates a new directory.
+
+**Syntax**
+
+```bash
+mkdir directory_name
+```
+
+**Example**
+
+```bash
+mkdir projects
+```
+
+Create multiple directories:
+
+```bash
+mkdir dir1 dir2 dir3
+```
+
+Create nested directories:
+
+```bash
+mkdir -p project/src/code
+```
+
+---
+
+# 4. `ls -l`
+
+**Definition:**
+Lists files in **long format**, showing detailed information.
+
+**Syntax**
+
+```bash
+ls -l
+```
+
+**Example Output**
+
+```
+-rw-r--r-- 1 user user  124 Mar 8  file1.txt
+drwxr-xr-x 2 user user 4096 Mar 8  folder1
+```
+
+**Fields Meaning**
+
+```
+permissions  links owner group size date filename
+```
+
+---
+
+# 5. `pwd`
+
+**Definition:**
+Prints the **current working directory**.
+
+**Syntax**
+
+```bash
+pwd
+```
+
+**Example**
+
+```bash
+pwd
+```
+
+**Output**
+
+```
+/home/harsh/Documents
+```
+
+---
+
+# 6. `touch`
+
+**Definition:**
+Creates an empty file or updates file timestamp.
+
+**Syntax**
+
+```bash
+touch filename
+```
+
+**Example**
+
+```bash
+touch notes.txt
+```
+
+Create multiple files:
+
+```bash
+touch file1.txt file2.txt
+```
+
+---
+
+# 7. `clear`
+
+**Definition:**
+Clears the terminal screen.
+
+**Syntax**
+
+```bash
+clear
+```
+
+**Example**
+
+```bash
+clear
+```
+
+Shortcut:
+
+```
+Ctrl + L
+```
+
+---
+
+# 8. `rm`
+
+**Definition:**
+Deletes files.
+
+**Syntax**
+
+```bash
+rm filename
+```
+
+**Example**
+
+```bash
+rm notes.txt
+```
+
+Delete multiple files:
+
+```bash
+rm file1.txt file2.txt
+```
+
+---
+
+# 9. `rm -r`
+
+**Definition:**
+Deletes directories **recursively** (including files inside).
+
+**Syntax**
+
+```bash
+rm -r directory
+```
+
+**Example**
+
+```bash
+rm -r projects
+```
+
+Force delete:
+
+```bash
+rm -rf projects
+```
+
+---
+
+# 10. `rmdir`
+
+**Definition:**
+Removes **empty directories only**.
+
+**Syntax**
+
+```bash
+rmdir directory
+```
+
+**Example**
+
+```bash
+rmdir testFolder
+```
+
+---
+
+# 11. `cat`
+
+**Definition:**
+Displays file contents.
+
+**Syntax**
+
+```bash
+cat filename
+```
+
+**Example**
+
+```bash
+cat notes.txt
+```
+
+Combine files:
+
+```bash
+cat file1.txt file2.txt
+```
+
+Create file with cat:
+
+```bash
+cat > file.txt
+```
+
+---
+
+# 12. `echo`
+
+**Definition:**
+Displays text or writes text into files.
+
+**Syntax**
+
+```bash
+echo "text"
+```
+
+**Example**
+
+```bash
+echo "Hello Linux"
+```
+
+Write text to file:
+
+```bash
+echo "Hello" > file.txt
+```
+
+Append text:
+
+```bash
+echo "World" >> file.txt
+```
+
+---
+
+# 13. `head`
+
+**Definition:**
+Shows the **first 10 lines** of a file.
+
+**Syntax**
+
+```bash
+head filename
+```
+
+**Example**
+
+```bash
+head data.txt
+```
+
+Show first 5 lines:
+
+```bash
+head -n 5 data.txt
+```
+
+---
+
+# 14. `tail`
+
+**Definition:**
+Shows the **last 10 lines** of a file.
+
+**Syntax**
+
+```bash
+tail filename
+```
+
+**Example**
+
+```bash
+tail log.txt
+```
+
+Show last 5 lines:
+
+```bash
+tail -n 5 log.txt
+```
+
+Live log monitoring:
+
+```bash
+tail -f log.txt
+```
+
+---
+
+# 15. `zcat`
+
+**Definition:**
+Displays contents of **compressed (.gz) files** without extracting them.
+
+**Syntax**
+
+```bash
+zcat filename.gz
+```
+
+**Example**
+
+```bash
+zcat logs.gz
+```
+
+---
+
+# 16. `less`
+
+**Definition:**
+Views large files **page by page** with scrolling.
+
+**Syntax**
+
+```bash
+less filename
+```
+
+**Example**
+
+```bash
+less data.txt
+```
+
+Navigation
+
+```
+Space → next page
+b → previous page
+q → quit
+```
+
+---
+
+# 17. `more`
+
+**Definition:**
+Displays file content **page by page** (older alternative to `less`).
+
+**Syntax**
+
+```bash
+more filename
+```
+
+**Example**
+
+```bash
+more notes.txt
+```
+
+Difference:
+
+* `less` allows backward scrolling
+* `more` does not easily allow it
+
+---
+
+# 18. `cp`
+
+**Definition:**
+Copies files or directories.
+
+**Syntax**
+
+```bash
+cp source destination
+```
+
+**Example**
+
+```bash
+cp file1.txt file2.txt
+```
+
+Copy file to folder:
+
+```bash
+cp file.txt Documents/
+```
+
+Copy directory:
+
+```bash
+cp -r folder1 folder2
+```
+
+---
+
+# 19. `mv`
+
+**Definition:**
+Moves or renames files.
+
+**Syntax**
+
+```bash
+mv source destination
+```
+
+**Examples**
+
+Rename file:
+
+```bash
+mv old.txt new.txt
+```
+
+Move file to directory:
+
+```bash
+mv file.txt Documents/
+```
+
+---
+
+# 20. `inode`
+
+**Definition:**
+An **inode (Index Node)** is a data structure used by Linux filesystems to store metadata about a file.
+
+It stores:
+
+* file size
+* file owner
+* permissions
+* timestamps
+* disk block location
+
+It **does NOT store the file name**.
+
+**Example**
+
+Check inode number:
+
+```bash
+ls -i
+```
+
+Output:
+
+```
+123456 file1.txt
+123457 notes.txt
+```
+
+Each file has a unique inode number.
+
+---
+
+# Important Concept (Related to Inodes)
+
+### Hard Link
+
+Two filenames pointing to the **same inode**.
+
+```bash
+ln file1.txt hardlink.txt
+```
+
+### Soft Link (Symbolic Link)
+
+Pointer to another file path.
+
+```bash
+ln -s file1.txt softlink.txt
+```
+
+---
+
 
