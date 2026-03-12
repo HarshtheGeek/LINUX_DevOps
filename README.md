@@ -637,6 +637,8 @@ file1.txt  notes.txt  folder1
 
 * `ls -a` → shows hidden files
 * `ls -lh` → shows size in human-readable format
+* Use `ls -l` when you want exact byte size.
+* Use `ls -lh` when you want readable sizes quickly
 
 ---
 
