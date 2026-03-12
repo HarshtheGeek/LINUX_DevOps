@@ -1580,6 +1580,571 @@ Because Bash expands `!` before executing commands, it can change the text you i
 
 ---
 
+# Linux File Copying and Linking Extra points to remember
+
+## 1. Copying Files Using `cp`
+
+The `cp` command is used to copy files or directories in Linux.
+
+### Syntax
+
+```bash
+cp source destination
+```
+
+### Example
+
+```bash
+cp dir1/file.txt dir2/
+```
+
+This creates a **separate copy** of the file.
+
+Directory structure:
+
+```
+dir1/file.txt
+dir2/file.txt
+```
+
+Both files initially contain the same content.
+
+Example content:
+
+```
+line1
+line2
+```
+
+---
+
+## 2. Modifying the Copied File
+
+If we modify the copied file:
+
+```bash
+echo "line3" >> dir2/file.txt
+```
+
+Now the contents become:
+
+### dir2/file.txt
+
+```
+line1
+line2
+line3
+```
+
+### dir1/file.txt
+
+```
+line1
+line2
+```
+
+The original file **does not change**.
+
+### Reason
+
+The `cp` command creates a **completely independent copy**.
+After copying, the files are **not connected**.
+
+---
+
+# Linux File Linking
+
+Linux provides two types of links:
+
+1. Hard Links
+2. Symbolic Links
+
+---
+
+## 1. Hard Link
+
+A hard link creates another filename that points to the **same underlying file (inode)**.
+
+### Command
+
+```bash
+ln dir1/file.txt dir2/file.txt
+```
+
+Result:
+
+```
+dir1/file.txt
+dir2/file.txt
+```
+
+Both names refer to the **same file data**.
+
+If you edit one file, the other will also reflect the change.
+
+Example:
+
+```bash
+echo "line3" >> dir2/file.txt
+```
+
+Both files will now contain:
+
+```
+line1
+line2
+line3
+```
+
+---
+
+## 2. Symbolic Link (Soft Link)
+
+A symbolic link is a **pointer to another file path**.
+
+### Command
+
+```bash
+ln -s dir1/file.txt dir2/file.txt
+```
+
+Now:
+
+```
+dir2/file.txt → dir1/file.txt
+```
+
+If you edit the file using either path, the changes affect the original file.
+
+However, if the original file is deleted, the symbolic link becomes **broken**.
+
+---
+
+# Checking if Files Share the Same Inode
+
+You can check whether two files are the same file (hard link) using:
+
+```bash
+ls -li
+```
+
+Example output:
+
+```
+12345 -rw-r--r-- 2 user user 20 Mar 12 file.txt
+12345 -rw-r--r-- 2 user user 20 Mar 12 file2.txt
+```
+
+If the **inode numbers are the same**, the files are **hard links to the same file**.
+
+---
+
+# Summary
+
+| Command             | Behavior                                       |
+| ------------------- | ---------------------------------------------- |
+| `cp file1 file2`    | Creates an independent copy                    |
+| `ln file1 file2`    | Creates a hard link (same inode)               |
+| `ln -s file1 file2` | Creates a symbolic link (pointer to file path) |
+
+---
+
+# Key Takeaway
+
+* `cp` → creates a **separate duplicate file**
+* `ln` → creates **another name for the same file**
+* `ln -s` → creates a **pointer to the original file**
+
+# VI Editor Notes (Linux)
+
+## 1. What is `vi`
+
+`vi` (Visual Editor) is a **terminal-based text editor** available on almost every Unix/Linux system.
+It is commonly used for editing configuration files, writing code, and quick file modifications directly from the terminal.
+
+Modern systems often use **`vim` (Vi Improved)**, which is an enhanced version of `vi`.
+
+---
+
+# 2. Opening the VI Editor
+
+### Open an existing file
+
+```bash
+vi filename.txt
+```
+
+### Create a new file
+
+```bash
+vi newfile.txt
+```
+
+---
+
+# 3. VI Modes
+
+`vi` operates in **three main modes**.
+
+| Mode         | Purpose                                  |
+| ------------ | ---------------------------------------- |
+| Normal Mode  | Default mode for navigation and commands |
+| Insert Mode  | Used to insert or edit text              |
+| Command Mode | Used to save, quit, and execute commands |
+
+---
+
+# 4. Entering Insert Mode
+
+From **Normal Mode**, press:
+
+| Key | Action                      |
+| --- | --------------------------- |
+| `i` | Insert text before cursor   |
+| `I` | Insert at beginning of line |
+| `a` | Insert after cursor         |
+| `A` | Insert at end of line       |
+| `o` | Open new line below         |
+| `O` | Open new line above         |
+
+Example workflow:
+
+```
+vi file.txt
+press i
+start typing text
+```
+
+---
+
+# 5. Exit Insert Mode
+
+Press:
+
+```
+Esc
+```
+
+This returns to **Normal Mode**.
+
+---
+
+# 6. Saving and Exiting
+
+Press `Esc` then type:
+
+| Command | Meaning             |
+| ------- | ------------------- |
+| `:w`    | Save file           |
+| `:q`    | Quit                |
+| `:wq`   | Save and quit       |
+| `:x`    | Save and exit       |
+| `:q!`   | Quit without saving |
+
+Example:
+
+```
+:wq
+```
+
+---
+
+# 7. Cursor Movement
+
+| Key | Movement   |
+| --- | ---------- |
+| `h` | Move left  |
+| `l` | Move right |
+| `j` | Move down  |
+| `k` | Move up    |
+
+Additional navigation:
+
+| Command | Meaning           |
+| ------- | ----------------- |
+| `0`     | Start of line     |
+| `$`     | End of line       |
+| `gg`    | Beginning of file |
+| `G`     | End of file       |
+
+---
+
+# 8. Deleting Text
+
+| Command | Action                |
+| ------- | --------------------- |
+| `x`     | Delete character      |
+| `dd`    | Delete current line   |
+| `d$`    | Delete to end of line |
+| `dw`    | Delete word           |
+
+Example:
+
+```
+dd
+```
+
+Deletes the entire line.
+
+---
+
+# 9. Copy and Paste
+
+| Command | Meaning             |
+| ------- | ------------------- |
+| `yy`    | Copy current line   |
+| `p`     | Paste after cursor  |
+| `P`     | Paste before cursor |
+
+Example:
+
+```
+yy
+p
+```
+
+Copies and pastes a line.
+
+---
+
+# 10. Undo and Redo
+
+| Command    | Meaning          |
+| ---------- | ---------------- |
+| `u`        | Undo last change |
+| `Ctrl + r` | Redo change      |
+
+---
+
+# 11. Searching in VI
+
+### Search for a word
+
+```
+/word
+```
+
+Press `n` to go to the **next match**.
+
+Example:
+
+```
+/hello
+```
+
+---
+
+# 12. Replace Text
+
+Replace all occurrences in a file:
+
+```
+:%s/old/new/g
+```
+
+Example:
+
+```
+:%s/apple/orange/g
+```
+
+---
+
+# 13. Show Line Numbers
+
+```
+:set number
+```
+
+Disable:
+
+```
+:set nonumber
+```
+
+---
+
+# 14. Quick Developer Workflow
+
+Typical usage pattern:
+
+```
+vi file.txt
+i
+(write content)
+Esc
+:wq
+```
+
+---
+
+# 15. Most Important Commands (Quick Summary)
+
+| Command | Action                |
+| ------- | --------------------- |
+| `i`     | Insert mode           |
+| `Esc`   | Return to normal mode |
+| `:w`    | Save                  |
+| `:q`    | Quit                  |
+| `:wq`   | Save and quit         |
+| `dd`    | Delete line           |
+| `yy`    | Copy line             |
+| `p`     | Paste                 |
+| `u`     | Undo                  |
+| `/word` | Search word           |
+
+---
+
+# Key Takeaway
+
+`vi` is a **modal text editor**, meaning editing, navigation, and commands happen in different modes.
+Mastering the basic commands allows very fast editing directly from the terminal.
+
+
+# How to Run C++ Code Using Linux
+
+Running a C++ program in Linux involves two main steps: **compiling the source code** and **executing the compiled program**.
+
+---
+
+## 1. Create a C++ File
+
+Create a file with the `.cpp` extension.
+
+Example:
+
+```cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hello" << endl;
+}
+```
+
+Save the file as:
+
+```
+hello.cpp
+```
+
+---
+
+## 2. Check the File in the Directory
+
+Use the `ls` command to verify the file exists.
+
+```bash
+ls
+```
+
+Output:
+
+```
+hello.cpp
+```
+
+---
+
+## 3. Compile the C++ Program
+
+Use the **GNU C++ compiler (`g++`)** to compile the program.
+
+```bash
+g++ hello.cpp
+```
+
+After compilation, Linux generates an executable file named:
+
+```
+a.out
+```
+
+---
+
+## 4. Run the Executable File
+
+Execute the compiled program using:
+
+```bash
+./a.out
+```
+
+Output:
+
+```
+Hello
+```
+
+---
+
+## 5. Compile With a Custom Executable Name
+
+Instead of the default `a.out`, you can specify your own executable name.
+
+```bash
+g++ hello.cpp -o hello
+```
+
+This creates an executable file named:
+
+```
+hello
+```
+
+Run it using:
+
+```bash
+./hello
+```
+
+Output:
+
+```
+Hello
+```
+
+---
+
+## 6. Complete Workflow
+
+```bash
+g++ hello.cpp -o hello
+./hello
+```
+
+---
+
+## 7. Why `./` is Required
+
+Linux does not execute programs from the current directory automatically for security reasons.
+
+Example:
+
+```
+hello      ❌ Not executed
+./hello    ✅ Executes the program
+```
+
+`./` tells the shell to run the program from the **current directory**.
+
+---
+
+## 8. If `g++` Is Not Installed
+
+Install the GNU C++ compiler.
+
+For Debian/Ubuntu-based systems:
+
+```bash
+sudo apt install g++
+```
+
+---
+
+
+
+
 
 
 
